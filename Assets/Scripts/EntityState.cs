@@ -25,7 +25,7 @@ public abstract class EntityState
         anim.SetBool(animBoolName, true);
     }
     public virtual void Update() {
-        anim.SetFloat("yVelocity", rb.velocity.y);
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }
     public virtual void Exit() {
         anim.SetBool(animBoolName, false);

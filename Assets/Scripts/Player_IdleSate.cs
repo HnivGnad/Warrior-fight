@@ -7,7 +7,7 @@ public class Player_IdleSate : Player_GroundedState {
     }
     public override void Enter() {
         base.Enter();
-        player.SetVelocity(0, rb.velocity.y);
+        player.SetVelocity(0, rb.linearVelocity.y);
     }
     public override void Update() {
         base.Update();

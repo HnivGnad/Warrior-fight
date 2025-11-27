@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         HandleCollisionDetect();
     }
     public void SetVelocity(float xVelocity, float yVelocity) {
-        rb.velocity = new Vector2(xVelocity, yVelocity);
+        rb.linearVelocity = new Vector2(xVelocity, yVelocity);
         HandleFlip(xVelocity);
     }
     private void HandleFlip(float xVelocity) {
