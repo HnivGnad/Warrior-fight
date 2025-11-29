@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Player_MoveState moveState { get; private set; }
     public Player_JumpState jumpState { get; private set; }
     public Player_FallState fallState { get; private set; }
+    public Player_WallSlideState wallSlideState { get; private set; }
 
 
     [Header("Movement detail")]
@@ -20,16 +21,20 @@ public class Player : MonoBehaviour
     private bool facingRight = true;
     public float jumpForce = 5f;
     public Vector2 moveInput { get; private set; }
-
-
+    private int facingDir = 1;
+    [Range(0, 1)]
+    public float wallSlideSlowMultiplier;
 
     [Header("Collision detection")]
     [SerializeField] private float groundCheckDistance;
+    [SerializeField] private float wallCheckDistance;
     public bool groundDetect { get; private set; }
     public LayerMask whatIsLayout;
+    public bool wallDetect;
 
     [Range(0, 1)]
     public float inAirMoveMutiplier = 0.7f;
+
 
     private void Awake() {
         anim = GetComponentInChildren<Animator>();
@@ -42,6 +47,7 @@ public class Player : MonoBehaviour
         moveState = new Player_MoveState(this, stateMachine, "move");
         jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
         fallState = new Player_FallState(this, stateMachine, "jumpFall");
+        wallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlide");
     }
     private void OnEnable() {
         input.Enable();
@@ -72,14 +78,17 @@ public class Player : MonoBehaviour
         else if(xVelocity < 0 && facingRight)
             Flip();
     }
-    private void Flip() {
+    public void Flip() {
         transform.Rotate(0, 180, 0);
         facingRight = !facingRight;
+        facingDir = facingDir * -1;
     }
     private void HandleCollisionDetect() {
         groundDetect = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsLayout);
+        wallDetect = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance * facingDir, whatIsLayout);
     }
     private void OnDrawGizmos() {
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(wallCheckDistance * facingDir, 0));
     }
 }
