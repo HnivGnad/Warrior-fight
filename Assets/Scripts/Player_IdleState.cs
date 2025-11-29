@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_IdleSate : Player_GroundedState {
-    public Player_IdleSate(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName) {
+public class Player_IdleState : Player_GroundedState {
+    public Player_IdleState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName) {
     }
     public override void Enter() {
         base.Enter();

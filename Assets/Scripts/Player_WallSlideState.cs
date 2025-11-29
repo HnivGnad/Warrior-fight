@@ -1,27 +1,40 @@
 using UnityEngine;
 
-public class Player_WallSlideState : EntityState {
-    public Player_WallSlideState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName) {
+public class Player_WallSlideState : EntityState
+{
+    public Player_WallSlideState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
+    {
     }
-    public override void Update() {
+    public override void Update()
+    {
         base.Update();
+        HandleWallSlide();
 
-        if (player.wallDetect == false) {
+        if (input.Player.Jump.WasPressedThisFrame())
+        {
+            stateMachine.ChangeState(player.wallJumpState);
+        }
+
+        if (player.wallDetect == false)
+        {
             stateMachine.ChangeState(player.fallState);
         }
 
-        HandleWallSlide();
-        if (player.groundDetect) {
+        if (player.groundDetect)
+        {
             stateMachine.ChangeState(player.idleState);
             player.Flip();
         }
 
     }
-    private void HandleWallSlide() {
-        if (player.moveInput.y < 0 && player.groundDetect == false) {
+    private void HandleWallSlide()
+    {
+        if (player.moveInput.y < 0 && player.groundDetect == false)
+        {
             player.SetVelocity(player.moveInput.x, rb.linearVelocityY);
         }
-        else {
+        else
+        {
             player.SetVelocity(player.moveInput.x, rb.linearVelocityY * player.wallSlideSlowMultiplier);
         }
     }
