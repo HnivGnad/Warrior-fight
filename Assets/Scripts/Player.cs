@@ -16,6 +16,11 @@ public class Player : MonoBehaviour
     public Player_WallSlideState wallSlideState { get; private set; }
     public Player_WallJumpState wallJumpState { get; private set; }
     public Player_DashState dashState { get; private set; }
+    public Player_BasicAttackState basicAttackState { get; private set; }
+
+    [Header("Ataack detail")]
+    public Vector2 attackVelocity;
+    public float attackVelocityDuration = 0.1f;
 
     [Header("Movement detail")]
     public float moveSpeed;
@@ -54,6 +59,7 @@ public class Player : MonoBehaviour
         wallSlideState = new Player_WallSlideState(this, stateMachine, "wallSlide");
         wallJumpState = new Player_WallJumpState(this, stateMachine, "jumpFall");
         dashState = new Player_DashState(this, stateMachine, "dash");
+        basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
     }
     private void OnEnable() {
         input.Enable();
@@ -86,6 +92,9 @@ public class Player : MonoBehaviour
         transform.Rotate(0, 180, 0);
         facingRight = !facingRight;
         facingDir = facingDir * -1;
+    }
+    public void CallAnimationTrigger() {
+        stateMachine.currentState.CallAnimationTrigger();
     }
     private void HandleCollisionDetect() {
         groundDetect = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsLayout);

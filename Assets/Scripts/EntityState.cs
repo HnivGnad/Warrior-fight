@@ -10,8 +10,8 @@ public abstract class EntityState
     protected StateMachine stateMachine;
     protected string animBoolName;
     protected PlayerInputSet input;
-    protected float stateTimer; 
-
+    protected float stateTimer;
+    protected bool triggerCall;
     public EntityState (Player player, StateMachine stateMachine, string stateName) {
         this.player = player;
         this.stateMachine = stateMachine;
@@ -24,6 +24,7 @@ public abstract class EntityState
 
     public virtual void Enter() {
         anim.SetBool(animBoolName, true);
+        triggerCall = false;
     }
     public virtual void Update() {
         stateTimer -= Time.deltaTime;
@@ -45,5 +46,9 @@ public abstract class EntityState
             return false;
 
         return true;
+    }
+    public void CallAnimationTrigger()
+    {
+        triggerCall = true;
     }
 }

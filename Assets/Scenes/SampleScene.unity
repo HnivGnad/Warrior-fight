@@ -510,11 +510,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5e4e5acba74f54ba097df165ac2a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackVelocity: {x: 3, y: 1.5}
+  attackVelocityDuration: 0.1
   moveSpeed: 7
   jumpForce: 12
   wallSlideSlowMultiplier: 0.4
   groundCheckDistance: 1.45
-  wallCheckDistance: 0.45
+  wallCheckDistance: 0.38
   whatIsLayout:
     serializedVersion: 2
     m_Bits: 64
@@ -612,6 +614,7 @@ GameObject:
   - component: {fileID: 968869796}
   - component: {fileID: 968869798}
   - component: {fileID: 968869797}
+  - component: {fileID: 968869799}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -711,6 +714,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &968869799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968869795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad898c7ad03b91d47adf4c89c8a37f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1475595860
 GameObject:
   m_ObjectHideFlags: 0
