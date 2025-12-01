@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &451624869
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &554982272
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -510,8 +510,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5e4e5acba74f54ba097df165ac2a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackVelocity: {x: 3, y: 1.5}
+  attackVelocity:
+  - {x: 3, y: 1.5}
+  - {x: 1, y: 2}
+  - {x: 2, y: 5}
   attackVelocityDuration: 0.1
+  comboResetTime: 1
   moveSpeed: 7
   jumpForce: 12
   wallSlideSlowMultiplier: 0.4
@@ -532,7 +536,7 @@ Transform:
   m_GameObject: {fileID: 810586957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.09, y: 0.99, z: 0}
+  m_LocalPosition: {x: -3.25, y: -0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -743,7 +747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1475595861
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -989,7 +993,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.6, y: -3.69, z: 0}
-  m_LocalScale: {x: 13.68, y: 2.57125, z: 1}
+  m_LocalScale: {x: 19.2888, y: 1.7227376, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
