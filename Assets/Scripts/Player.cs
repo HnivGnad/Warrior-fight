@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
     public LayerMask whatIsLayout;
     public bool wallDetect;
     public Vector2 wallJumpForce;
+    public Transform primaryWallCheck;
+    public Transform secondaryWallCheck;
+
 
     [Range(0, 1)]
     public float inAirMoveMutiplier = 0.7f;
@@ -115,10 +118,12 @@ public class Player : MonoBehaviour
     }
     private void HandleCollisionDetect() {
         groundDetect = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsLayout);
-        wallDetect = Physics2D.Raycast(transform.position, Vector2.right, wallCheckDistance * facingDir, whatIsLayout);
+        wallDetect = Physics2D.Raycast(primaryWallCheck.position, Vector2.right, wallCheckDistance * facingDir, whatIsLayout)
+                  && Physics2D.Raycast(secondaryWallCheck.position, Vector2.right, wallCheckDistance * facingDir, whatIsLayout);
     }
     private void OnDrawGizmos() {
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(wallCheckDistance * facingDir, 0));
+        Gizmos.DrawLine(primaryWallCheck.position, primaryWallCheck.position + new Vector3(wallCheckDistance * facingDir, 0));
+        Gizmos.DrawLine(secondaryWallCheck.position, secondaryWallCheck.position + new Vector3(wallCheckDistance * facingDir, 0));
     }
 }
