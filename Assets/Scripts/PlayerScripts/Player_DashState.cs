@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_DashState : EntityState
+public class Player_DashState : PlayerState
 {
     public float originGravityScale { get; private set; }
     public int dashDir { get; private set; }

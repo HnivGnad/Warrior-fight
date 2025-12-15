@@ -1,52 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EntityState
 {
-    protected Animator anim;
-    protected Rigidbody2D rb;
-    protected Player player;
     protected StateMachine stateMachine;
     protected string animBoolName;
-    protected PlayerInputSet input;
+
+    protected Animator anim;
+    protected Rigidbody2D rb;
+
     protected float stateTimer;
     protected bool triggerCall;
-    public EntityState (Player player, StateMachine stateMachine, string stateName) {
-        this.player = player;
+
+    public EntityState(StateMachine stateMachine, string animBoolName)
+    {
         this.stateMachine = stateMachine;
-        this.animBoolName = stateName;
-
-        anim = player.anim;
-        rb = player.rb;
-        input = player.input;
+        this.animBoolName = animBoolName;
     }
-
-    public virtual void Enter() {
+    public virtual void Enter()
+    {
         anim.SetBool(animBoolName, true);
         triggerCall = false;
     }
-    public virtual void Update() {
+    public virtual void Update()
+    {
         stateTimer -= Time.deltaTime;
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
-        if(input.Player.Dash.WasPressedThisFrame() && CanDash())
-        {
-            stateMachine.ChangeState(player.dashState);
-        } 
     }
-    public virtual void Exit() {
+    public virtual void Exit()
+    {
         anim.SetBool(animBoolName, false);
     }
 
-    private bool CanDash()
-    {
-        if(player.wallDetect)
-            return false;
-        if(stateMachine.currentState == player.dashState)
-            return false;
-
-        return true;
-    }
+    
     public void CallAnimationTrigger()
     {
         triggerCall = true;

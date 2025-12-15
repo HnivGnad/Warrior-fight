@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateMachine
 {
-    public EntityState currentState;
+    public EntityState currentState { get; private set; }
     public void Initialize(EntityState startState) {
         currentState = startState;
         currentState.Enter();
