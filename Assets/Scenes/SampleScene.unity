@@ -181,7 +181,7 @@ Transform:
   m_GameObject: {fileID: 382120403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.91, y: 0.45999956, z: -10}
+  m_LocalPosition: {x: 0.28, y: 2.2399995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -486,7 +486,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.91, y: 0.45999956, z: -10}
+  m_LocalPosition: {x: 0.28, y: 2.2399995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 810586958}
   - component: {fileID: 810586961}
   - component: {fileID: 810586960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +727,7 @@ MonoBehaviour:
   groundCheckDistance: 1.38
   wallCheckDistance: 0.38
   groundCheck: {fileID: 810586959}
-  whatIsLayout:
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   wallDetect: 0
@@ -754,7 +754,7 @@ Transform:
   m_GameObject: {fileID: 810586957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.91, y: -1.94, z: 0}
+  m_LocalPosition: {x: 0.28, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -68702,7 +68702,7 @@ GameObject:
   - component: {fileID: 1803070131}
   - component: {fileID: 1803070130}
   - component: {fileID: 1803070129}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68788,17 +68788,27 @@ MonoBehaviour:
   groundCheckDistance: 0.41
   wallCheckDistance: 0.57
   groundCheck: {fileID: 739053670}
-  whatIsLayout:
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   wallDetect: 0
-  wallJumpForce: {x: 0, y: 0}
+  wallJumpForce: {x: 5, y: 3}
   primaryWallCheck: {fileID: 1803070132}
   secondaryWallCheck: {fileID: 1803070132}
   inAirMoveMutiplier: 0.7
+  battleMoveSpeed: 2.5
+  attackDistance: 2
+  battleTimeDuration: 5
+  minRetreatDistance: 1
+  retreatVelocity: {x: 5, y: 3}
   idleTime: 2
   moveSpeed: 1.5
   moveAnimSpeedMutiplier: 1
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerCheck: {fileID: 1803070132}
+  playerCheckDistance: 10
 --- !u!4 &1803070132
 Transform:
   m_ObjectHideFlags: 0
@@ -68808,7 +68818,7 @@ Transform:
   m_GameObject: {fileID: 1803070128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.35, y: -0.4, z: 0}
+  m_LocalPosition: {x: -6.42, y: -0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

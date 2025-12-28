@@ -5,7 +5,7 @@ public class Enemy_AttackState : EnemyState {
     }
     public override void Update() {
         if (triggerCall)
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.battleState);
     
     }
 }
