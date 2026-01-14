@@ -212,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 382120403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28, y: 2.2399995, z: -10}
+  m_LocalPosition: {x: -6.88, y: 1.9899997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -517,7 +517,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28, y: 2.2399995, z: -10}
+  m_LocalPosition: {x: -6.88, y: 1.9899997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -735,9 +735,10 @@ GameObject:
   - component: {fileID: 810586959}
   - component: {fileID: 810586958}
   - component: {fileID: 810586962}
-  - component: {fileID: 810586963}
   - component: {fileID: 810586961}
   - component: {fileID: 810586960}
+  - component: {fileID: 810586963}
+  - component: {fileID: 810586964}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -787,7 +788,7 @@ Transform:
   m_GameObject: {fileID: 810586957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28, y: -0.16, z: 0}
+  m_LocalPosition: {x: -6.88, y: -0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -873,7 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3943b6d0164bc4bb3f757a8440e9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   targetCheck: {fileID: 248436296}
   targetRadius: 1
   whatIsTarget:
@@ -893,6 +894,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   isDead: 0
+  currentHp: 0
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyKnockbackPower: {x: 3.5, y: 3.5}
+  knockbackDuration: 0.2
+  heavyKnockbackDuration: 0.5
+  heavyDamageThreshold: 0.3
+--- !u!114 &810586964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810586957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17fe2a00f0d43e459428780da53343f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageVfxMaterial: {fileID: 2100000, guid: 7e014ce09f3a3414782ec2bf9e2e4803, type: 2}
+  OnDamageVfxDuration: 0.15
 --- !u!1 &918983008
 GameObject:
   m_ObjectHideFlags: 0
@@ -68765,11 +68786,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1803070132}
-  - component: {fileID: 1803070131}
   - component: {fileID: 1803070130}
   - component: {fileID: 1803070129}
+  - component: {fileID: 1803070131}
   - component: {fileID: 1803070133}
   - component: {fileID: 1803070134}
+  - component: {fileID: 1803070135}
   m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -68886,7 +68908,7 @@ Transform:
   m_GameObject: {fileID: 1803070128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.42, y: -0.21, z: 0}
+  m_LocalPosition: {x: -2.2, y: -0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -68907,7 +68929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3943b6d0164bc4bb3f757a8440e9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 35
   targetCheck: {fileID: 2134896794}
   targetRadius: 1
   whatIsTarget:
@@ -68922,11 +68944,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1803070128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f39e68b330c8ca44a88dc0f20c306e52, type: 3}
+  m_Script: {fileID: 11500000, guid: 55f814b69d4118f4bb378927f2ef87d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
   isDead: 0
+  currentHp: 0
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyKnockbackPower: {x: 3.5, y: 3.5}
+  knockbackDuration: 0.2
+  heavyKnockbackDuration: 0.5
+  heavyDamageThreshold: 0.3
+--- !u!114 &1803070135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803070128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17fe2a00f0d43e459428780da53343f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageVfxMaterial: {fileID: 2100000, guid: 7e014ce09f3a3414782ec2bf9e2e4803, type: 2}
+  OnDamageVfxDuration: 0.15
 --- !u!1 &2084687158
 GameObject:
   m_ObjectHideFlags: 0

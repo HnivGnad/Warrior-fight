@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -25,6 +26,10 @@ public class Entity : MonoBehaviour
     [Range(0, 1)]
     public float inAirMoveMutiplier = 0.7f;
 
+    //Condition variable
+    private bool isKnocked;
+    private Coroutine knockbackCo;
+
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -33,20 +38,35 @@ public class Entity : MonoBehaviour
         stateMachine = new StateMachine();
 
     }
-
-
-    protected virtual void Start()
-    {
-
+    protected virtual void Start() {
+        
     }
     protected virtual void Update()
     {
         stateMachine.UpdateActiveState();
         HandleCollisionDetect();
     }
+    public void ReciveKnockback(Vector2 knockback, float duration) {
+        if(knockbackCo != null)
+            StopCoroutine(knockbackCo);
 
+        knockbackCo = StartCoroutine(KnockBackCo(knockback, duration));
+    }
+
+    private IEnumerator KnockBackCo(Vector2 knockback, float duration) {
+        isKnocked = true;
+        rb.linearVelocity = knockback;
+
+        yield return new WaitForSeconds(duration);
+
+        rb.linearVelocity = Vector2.zero;
+        isKnocked = false; 
+    }
     public void SetVelocity(float xVelocity, float yVelocity)
     {
+        if (isKnocked)
+            return;
+
         rb.linearVelocity = new Vector2(xVelocity, yVelocity);
         HandleFlip(xVelocity);
     }
