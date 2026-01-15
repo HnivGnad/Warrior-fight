@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player : Entity
 {
+    public static event Action OnPlayerDeath; 
+
     [Header("Attack detail")]
     public Vector2[] attackVelocity;
     public float attackVelocityDuration = 0.1f;
@@ -35,6 +38,7 @@ public class Player : Entity
     public Player_DashState dashState { get; private set; }
     public Player_BasicAttackState basicAttackState { get; private set; }
     public Player_JumpAttackState jumpAttackState { get; private set; }
+    public Player_DeathState deathState { get; private set; }
 
     protected override void Awake()
     {
@@ -49,13 +53,19 @@ public class Player : Entity
         dashState = new Player_DashState(this, stateMachine, "dash");
         basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
         jumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttack");
+        deathState = new Player_DeathState(this, stateMachine, "death");    
     }
     protected override void Start()
     {
         base.Start();
         stateMachine.Initialize(idleState);
     }
+    public override void EntityDeath() {
+        base.EntityDeath();
 
+        OnPlayerDeath?.Invoke();
+        stateMachine.ChangeState(deathState);
+    }
     private void OnEnable()
     {
         input.Enable();

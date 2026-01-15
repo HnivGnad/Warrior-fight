@@ -48,7 +48,7 @@ public class Entity_Health : MonoBehaviour
 
     private void Die() {
         isDead = true;
-        Debug.Log("Entity die!");
+        entity.EntityDeath();
     }
     public Vector2 CalculateKnockback(float damage, Transform damageDealer) {
         int diretion = transform.position.x > damageDealer.position.x ? 1 : -1;

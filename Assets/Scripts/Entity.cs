@@ -87,6 +87,10 @@ public class Entity : MonoBehaviour
     {
         stateMachine.currentState.AnimationTrigger();
     }
+    public virtual void EntityDeath() {
+
+    }
+
     private void HandleCollisionDetect()
     {
         groundDetect = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
