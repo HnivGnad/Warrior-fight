@@ -7,6 +7,12 @@ public class Enemy : Entity {
     public Enemy_AttackState attackState;
     public Enemy_BattleState battleState;
     public Enemy_DeathState deathState;
+    public Enemy_StunnedState stunnedState;
+
+    [Header("Stun state details")]
+    public float stunnedDuration = 1;
+    public Vector2 stunnedVelocity = new Vector2(2, 1);
+    [SerializeField] protected bool canBeStunned;
 
     [Header("Battle detaild")]
     public float battleMoveSpeed = 3;
@@ -26,6 +32,7 @@ public class Enemy : Entity {
     [SerializeField] private Transform playerCheck;
     [SerializeField] private float playerCheckDistance = 10;
     public Transform player { get; private set;}
+    public void EnableCounterWindow(bool enable) => canBeStunned = enable;
 
     public override void EntityDeath() {
         base.EntityDeath();
