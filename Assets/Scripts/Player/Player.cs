@@ -39,6 +39,7 @@ public class Player : Entity
     public Player_BasicAttackState basicAttackState { get; private set; }
     public Player_JumpAttackState jumpAttackState { get; private set; }
     public Player_DeathState deathState { get; private set; }
+    public Player_CounterAttackState counterAttackState { get; private set; }
 
     protected override void Awake()
     {
@@ -53,7 +54,8 @@ public class Player : Entity
         dashState = new Player_DashState(this, stateMachine, "dash");
         basicAttackState = new Player_BasicAttackState(this, stateMachine, "basicAttack");
         jumpAttackState = new Player_JumpAttackState(this, stateMachine, "jumpAttack");
-        deathState = new Player_DeathState(this, stateMachine, "death");    
+        deathState = new Player_DeathState(this, stateMachine, "death");   
+        counterAttackState = new Player_CounterAttackState(this, stateMachine, "counterAttack");
     }
     protected override void Start()
     {
