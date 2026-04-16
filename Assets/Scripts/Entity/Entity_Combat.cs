@@ -7,30 +7,36 @@ public class Entity_Combat : MonoBehaviour
 
     [Header("target details")]
     [SerializeField] Transform targetCheck;
-    [SerializeField] float targetRadius = 1 ;
+    [SerializeField] float targetRadius = 1;
     [SerializeField] LayerMask whatIsTarget;
 
     private void Awake()
     {
         vfx = GetComponent<Entity_VFX>();
     }
-    public void PerformAttack() {
+    public void PerformAttack()
+    {
         GetDetectCollider();
 
-        foreach (var target in GetDetectCollider()) {
+        foreach (var target in GetDetectCollider())
+        {
             IDamagable damagable = target.GetComponent<IDamagable>();
 
-            if(damagable == null) continue;
+            if (damagable == null) continue;
 
-            damagable.TakeDamage(damage, transform);
-            vfx.CreateOnHitVfx(target.transform);
-            
+            bool targetGotHit = damagable.TakeDamage(damage, transform);
+
+            if (targetGotHit)
+                vfx.CreateOnHitVfx(target.transform);
+
         }
     }
-    protected Collider2D[] GetDetectCollider() {
+    protected Collider2D[] GetDetectCollider()
+    {
         return Physics2D.OverlapCircleAll(targetCheck.position, targetRadius, whatIsTarget);
     }
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Gizmos.DrawWireSphere(targetCheck.position, targetRadius);
     }
 }
